@@ -2,14 +2,25 @@
 
 namespace Itsmattch\Library\Models;
 
+use Illuminate\Database\Eloquent\Attributes\UseResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 use Itsmattch\Library\Database\Factories\AuthorFactory;
+use Itsmattch\Library\Resources\AuthorResource;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property Collection $books
+ */
+#[UseResource(AuthorResource::class)]
 class Author extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
 
     public function books(): HasMany
     {
