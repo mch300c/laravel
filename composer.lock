@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53b5d56b3b7e3cbac1713e68c8850f6c",
+    "content-hash": "e08bbc959a24a007ec68cb09b985d91e",
     "packages": [
         {
             "name": "brick/math",
@@ -1052,6 +1052,83 @@
                 }
             ],
             "time": "2025-08-22T14:27:06+00:00"
+        },
+        {
+            "name": "itsmattch/library",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/itsmattch/library",
+                "reference": "aef069cee2947f281cc1b68cb82965dc897a0831"
+            },
+            "require-dev": {
+                "illuminate/database": "^12",
+                "illuminate/support": "^12",
+                "laravel/pint": "^1",
+                "pestphp/pest": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Itsmattch\\Library\\Providers\\AppServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Itsmattch\\Library\\": "src/",
+                    "Itsmattch\\Library\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/",
+                    "Workbench\\App\\": "workbench/app/",
+                    "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+                    "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "@clear",
+                    "@prepare"
+                ],
+                "clear": [
+                    "@php vendor/bin/testbench package:purge-skeleton --ansi"
+                ],
+                "prepare": [
+                    "@php vendor/bin/testbench package:discover --ansi"
+                ],
+                "build": [
+                    "@php vendor/bin/testbench workbench:build --ansi"
+                ],
+                "serve": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "@build",
+                    "@php vendor/bin/testbench serve --ansi"
+                ],
+                "lint": [
+                    "@php vendor/bin/pint --ansi",
+                    "@php vendor/bin/phpstan analyse --verbose --ansi"
+                ],
+                "test": [
+                    "@clear",
+                    "@php vendor/bin/pest"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Chmielewski",
+                    "email": "hello@itsmattch.com"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "laravel/framework",
@@ -8378,7 +8455,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "itsmattch/library": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
