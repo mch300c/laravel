@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Itsmattch\Library\Controllers\Book\BookUpdateController;
 use Itsmattch\Library\Models\Author;
 use Itsmattch\Library\Models\Book;
@@ -20,7 +22,7 @@ it('updates a book successfully', function () {
         'author_id' => $this->author->id,
     ];
 
-    $this->putJson('/api/books/' . $book->id, $newData)
+    $this->putJson('/api/books/'.$book->id, $newData)
         ->assertOk()
         ->assertJsonPath('data.name', 'Updated Title')
         ->assertJsonPath('data.author.id', $this->author->id);
@@ -36,7 +38,7 @@ it('fails to update when the author id is invalid', function () {
         'author_id' => 999,
     ];
 
-    $this->putJson('/api/books/' . $book->id, $badData)
+    $this->putJson('/api/books/'.$book->id, $badData)
         ->assertUnprocessable()
         ->assertJsonValidationErrors(['author_id']);
 });

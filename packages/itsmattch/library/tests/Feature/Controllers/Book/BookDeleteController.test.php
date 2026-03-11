@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Itsmattch\Library\Controllers\Book\BookDeleteController;
 use Itsmattch\Library\Models\Book;
 
@@ -10,7 +12,7 @@ it('deletes a book', function () {
     $book = Book::factory()->create();
     $id = $book->id;
 
-    $this->deleteJson('/api/books/' . $id)
+    $this->deleteJson('/api/books/'.$id)
         ->assertNoContent();
 
     $this->assertDatabaseMissing('books', compact('id'));

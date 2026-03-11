@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Itsmattch\Library\Models\Author;
 use Itsmattch\Library\Models\Book;
 

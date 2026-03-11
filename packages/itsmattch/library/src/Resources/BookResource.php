@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Itsmattch\Library\Resources;
 
 use Illuminate\Http\Request;

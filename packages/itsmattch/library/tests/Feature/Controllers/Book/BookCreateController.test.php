@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Itsmattch\Library\Controllers\Book\BookCreateController;
 use Itsmattch\Library\Models\Author;
 

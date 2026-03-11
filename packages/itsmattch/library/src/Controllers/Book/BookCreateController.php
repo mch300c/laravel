@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Itsmattch\Library\Controllers\Book;
 
 use Illuminate\Http\Resources\Json\JsonResource;

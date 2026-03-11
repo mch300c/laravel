@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Itsmattch\Library\Controllers\Author\AuthorShowController;
 use Itsmattch\Library\Models\Author;
 
@@ -9,7 +11,7 @@ it('returns a specific book resource', function () {
     /** @var Author $author */
     $author = Author::factory()->create();
 
-    $this->getJson('/api/authors/' . $author->id)->assertOk();
+    $this->getJson('/api/authors/'.$author->id)->assertOk();
 });
 
 it('returns 404 when the book does not exist', function () {

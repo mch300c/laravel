@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Itsmattch\Library\Controllers\Book;
 
 use Illuminate\Http\Response;
@@ -11,6 +13,7 @@ class BookDeleteController extends Controller
     public function __invoke(Book $book): Response
     {
         $book->delete();
+
         return response()->noContent();
     }
 }

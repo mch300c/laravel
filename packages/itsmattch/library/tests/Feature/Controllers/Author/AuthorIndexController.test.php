@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Itsmattch\Library\Controllers\Author\AuthorIndexController;
 use Itsmattch\Library\Models\Author;
 
@@ -13,10 +15,10 @@ it('returns all authors', function () {
         ->assertJsonCount(10, 'data')
         ->assertExactJsonStructure([
             'data' => [
-                '*' => ['id', 'name', 'books' => ['*' => ['id', 'name']]]
+                '*' => ['id', 'name', 'books' => ['*' => ['id', 'name']]],
             ],
             'links',
-            'meta'
+            'meta',
         ]);
 });
 

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 use Itsmattch\Library\Controllers\Author\AuthorIndexController;
 use Itsmattch\Library\Controllers\Author\AuthorShowController;
 use Itsmattch\Library\Controllers\Book\BookCreateController;
 use Itsmattch\Library\Controllers\Book\BookDeleteController;
-use Itsmattch\Library\Controllers\Book\BookShowController;
 use Itsmattch\Library\Controllers\Book\BookIndexController;
+use Itsmattch\Library\Controllers\Book\BookShowController;
 use Itsmattch\Library\Controllers\Book\BookUpdateController;
 use Itsmattch\Library\Models\Author;
 use Itsmattch\Library\Models\Book;
