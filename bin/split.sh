@@ -18,6 +18,6 @@ function remote()
 
 git pull origin $CURRENT_BRANCH
 
-remote library git@github.com:mch300c/p.git
+remote library git@github.com:mch300c/library.git
 
 split 'packages/itsmattch/library' library
