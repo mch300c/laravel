@@ -13,13 +13,7 @@ it('returns all authors', function () {
         ->assertJsonCount(10, 'data')
         ->assertExactJsonStructure([
             'data' => [
-                '*' => [
-                    'id',
-                    'name',
-                    'books' => [
-                        '*' => ['id', 'name']
-                    ]
-                ]
+                '*' => ['id', 'name', 'books' => ['*' => ['id', 'name']]]
             ],
             'links',
             'meta'
