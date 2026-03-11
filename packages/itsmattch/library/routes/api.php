@@ -10,15 +10,13 @@ use Itsmattch\Library\Controllers\Book\BookDeleteController;
 use Itsmattch\Library\Controllers\Book\BookIndexController;
 use Itsmattch\Library\Controllers\Book\BookShowController;
 use Itsmattch\Library\Controllers\Book\BookUpdateController;
-use Itsmattch\Library\Models\Author;
-use Itsmattch\Library\Models\Book;
 
 Route::middleware('api')->prefix('api')->group(function () {
 
     // Books
     Route::get('books', BookIndexController::class);
     Route::get('books/{book}', BookShowController::class);
-    Route::post('books', BookCreateController::class)->can('create', Book::class);
+    Route::post('books', BookCreateController::class);
     Route::put('books/{book}', BookUpdateController::class);
     Route::delete('books/{book}', BookDeleteController::class);
 

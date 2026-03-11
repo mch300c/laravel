@@ -16,13 +16,14 @@ use Itsmattch\Library\Resources\AuthorResource;
  * @property int $id
  * @property string $name
  * @property Collection $books
+ * @property string $last_book_title
  */
 #[UseResource(AuthorResource::class)]
 class Author extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'last_book_title'];
 
     public function books(): HasMany
     {

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Itsmattch\Library\Database\Factories\BookFactory;
+use Itsmattch\Library\Jobs\UpdateAuthorLastBookTitle;
 use Itsmattch\Library\Resources\BookResource;
 
 /**
@@ -23,6 +24,13 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'author_id'];
+
+    protected static function booted(): void
+    {
+        static::created(function (Book $book) {
+            UpdateAuthorLastBookTitle::dispatch($book);
+        });
+    }
 
     public function author(): BelongsTo
     {
