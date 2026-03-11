@@ -16,13 +16,13 @@ use Itsmattch\Library\Models\Book;
 Route::middleware('api')->prefix('api')->group(function () {
 
     // Books
-    Route::get('books', BookIndexController::class)->can('viewAny', Book::class);
-    Route::get('books/{book}', BookShowController::class)->can('show', Book::class);
+    Route::get('books', BookIndexController::class);
+    Route::get('books/{book}', BookShowController::class);
     Route::post('books', BookCreateController::class)->can('create', Book::class);
-    Route::put('books/{book}', BookUpdateController::class)->can('update', Book::class);
-    Route::delete('books/{book}', BookDeleteController::class)->can('delete', Book::class);
+    Route::put('books/{book}', BookUpdateController::class);
+    Route::delete('books/{book}', BookDeleteController::class);
 
     // Authors
-    Route::get('authors', AuthorIndexController::class)->can('viewAny', Author::class);
-    Route::get('authors/{author}', AuthorShowController::class)->can('viewAny', Author::class);
+    Route::get('authors', AuthorIndexController::class);
+    Route::get('authors/{author}', AuthorShowController::class);
 });

@@ -12,6 +12,6 @@ class AuthorShowController extends Controller
 {
     public function __invoke(Author $author): JsonResource
     {
-        return $author->toResource();
+        return $author->load('books')->toResource();
     }
 }
