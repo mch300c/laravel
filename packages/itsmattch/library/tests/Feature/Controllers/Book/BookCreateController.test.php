@@ -16,11 +16,10 @@ it('creates a book with a valid author', function () {
         'author_id' => $author->id,
     ];
 
-    $this->postJson('/api/books', $data)
-        ->assertCreated()
-        ->assertJsonPath('data.name', 'The Martian')
-        ->assertJsonPath('data.author.id', $author->id);
-
+    $response = $this->postJson('/api/books', $data);
+    $response->assertCreated();
+    $response->assertJsonPath('data.name', 'The Martian');
+    $response->assertJsonPath('data.author.id', $author->id);
     $this->assertDatabaseHas('books', $data);
 });
 
@@ -30,9 +29,8 @@ it('fails to create a book when the author does not exist', function () {
         'author_id' => 999,
     ];
 
-    $this->postJson('/api/books', $data)
-        ->assertUnprocessable()
-        ->assertJsonValidationErrors(['author_id']);
-
+    $response = $this->postJson('/api/books', $data);
+    $response->assertUnprocessable();
+    $response->assertJsonValidationErrors(['author_id']);
     $this->assertDatabaseEmpty('books');
 });

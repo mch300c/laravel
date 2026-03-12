@@ -22,11 +22,10 @@ it('updates a book successfully', function () {
         'author_id' => $this->author->id,
     ];
 
-    $this->putJson('/api/books/'.$book->id, $newData)
-        ->assertOk()
-        ->assertJsonPath('data.name', 'Updated Title')
-        ->assertJsonPath('data.author.id', $this->author->id);
-
+    $response = $this->putJson('/api/books/'.$book->id, $newData);
+    $response->assertOk();
+    $response->assertJsonPath('data.name', 'Updated Title');
+    $response->assertJsonPath('data.author.id', $this->author->id);
     $this->assertDatabaseHas('books', array_merge(['id' => $book->id], $newData));
 });
 
@@ -38,14 +37,15 @@ it('fails to update when the author id is invalid', function () {
         'author_id' => 999,
     ];
 
-    $this->putJson('/api/books/'.$book->id, $badData)
-        ->assertUnprocessable()
-        ->assertJsonValidationErrors(['author_id']);
+    $response = $this->putJson('/api/books/'.$book->id, $badData);
+    $response->assertUnprocessable();
+    $response->assertJsonValidationErrors(['author_id']);
 });
 
 it('returns 404 when the book does not exist', function () {
-    $this->putJson('/api/books/999', [
+    $response = $this->putJson('/api/books/999', [
         'name' => 'Doesn’t matter',
         'author_id' => $this->author->id,
-    ])->assertNotFound();
+    ]);
+    $response->assertNotFound();
 });

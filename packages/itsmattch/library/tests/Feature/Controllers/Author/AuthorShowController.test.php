@@ -11,9 +11,11 @@ it('returns a specific book resource', function () {
     /** @var Author $author */
     $author = Author::factory()->create();
 
-    $this->getJson('/api/authors/'.$author->id)->assertOk();
+    $response = $this->getJson('/api/authors/'.$author->id);
+    $response->assertOk();
 });
 
 it('returns 404 when the book does not exist', function () {
-    $this->getJson('/api/authors/999')->assertNotFound();
+    $response = $this->getJson('/api/authors/999');
+    $response->assertNotFound();
 });

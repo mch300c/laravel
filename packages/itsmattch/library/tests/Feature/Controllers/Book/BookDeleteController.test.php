@@ -10,12 +10,10 @@ covers(BookDeleteController::class);
 it('deletes a book', function () {
     /** @var Book $book */
     $book = Book::factory()->create();
-    $id = $book->id;
 
-    $this->deleteJson('/api/books/'.$id)
-        ->assertNoContent();
-
-    $this->assertDatabaseMissing('books', compact('id'));
+    $response = $this->deleteJson('/api/books/'.$book->id);
+    $response->assertNoContent();
+    $this->assertDatabaseMissing('books', ['id' => $book->id]);
 });
 
 it('returns 404 when the book does not exist', function () {
