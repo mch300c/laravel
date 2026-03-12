@@ -1,6 +1,6 @@
 name: Run Tests (Pest)
 
-on: [pull_request]
+on: [push]
 
 jobs:
   test:
